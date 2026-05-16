@@ -1,0 +1,14 @@
+name: Build APK
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test workflow
+        run: echo "GitHub Actions funcionando correctamente"
