@@ -25,16 +25,11 @@ jobs:
       - name: Grant execute permission
         run: chmod +x gradlew
 
-      - name: Build APK (Multi-project Support)
-        run: |
-          if [ -f "app/build.gradle" ]; then
-            ./gradlew :app:assembleRelease
-          else
-            ./gradlew assembleRelease || ./gradlew :assembleRelease
-          fi
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: NetworkGuardAPK
-          path: "**/build/outputs/apk/release/*.apk"
+          path: "**/build/outputs/apk/debug/*.apk"
