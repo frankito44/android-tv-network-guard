@@ -25,11 +25,16 @@ jobs:
       - name: Grant execute permission
         run: chmod +x gradlew
 
-      - name: Build Debug APK
-        run: ./gradlew :app:assembleDebug
+      - name: Locate and Build Android Project
+        run: |
+          GRADLE_FILE=$(find . -name "build.gradle" -not -path "*/.*" | head -n 1)
+          PROJECT_DIR=$(dirname "$GRADLE_FILE")
+          echo "Proyecto encontrado en: $PROJECT_DIR"
+          cd "$PROJECT_DIR"
+          ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: NetworkGuardAPK
-          path: "app/build/outputs/apk/debug/*.apk"
+          path: "**/build/outputs/apk/debug/*.apk"
