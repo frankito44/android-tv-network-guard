@@ -25,10 +25,13 @@ jobs:
       - name: Clean and Build APK
         run: ./gradlew assembleDebug --no-daemon
 
+      - name: List files to find APK
+        run: find . -name "*.apk"
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: NetworkGuardAPK
           path: |
-            **/build/outputs/apk/debug/*.apk
-            **/build/outputs/apk/*.apk
+            **/build/outputs/apk/**/*.apk
+            **/*.apk
