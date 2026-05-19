@@ -19,8 +19,10 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Setup Gradle
+      - name: Setup Gradle (Auto-Fix Versions)
         uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: wrapper
 
       - name: Grant execute permission
         run: chmod +x gradlew
@@ -33,4 +35,3 @@ jobs:
         with:
           name: NetworkGuardAPK
           path: "**/build/outputs/apk/debug/*.apk"
-  
