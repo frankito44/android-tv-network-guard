@@ -25,13 +25,8 @@ jobs:
       - name: Grant execute permission
         run: chmod +x gradlew
 
-      - name: Locate and Build Android Project
-        run: |
-          GRADLE_FILE=$(find . -name "build.gradle" -not -path "*/.*" | head -n 1)
-          PROJECT_DIR=$(dirname "$GRADLE_FILE")
-          echo "Proyecto encontrado en: $PROJECT_DIR"
-          cd "$PROJECT_DIR"
-          ./gradlew assembleDebug
+      - name: Force Build inside App Folder
+        run: ./gradlew :app:assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
