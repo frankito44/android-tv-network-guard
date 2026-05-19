@@ -29,4 +29,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: NetworkGuardAPK
-          path: "**/build/outputs/apk/**/*.apk"
+          path: .
